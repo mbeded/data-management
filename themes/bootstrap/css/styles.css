@@ -1,0 +1,27 @@
+#page {padding-top: 60px;}
+.button-column img{width: 17px}
+#blood-donors-grid .button-column {text-align: center;width: 79px;}
+.inner-box{background-color: #f9f9f9;border: 1px solid #dddddd;float: left;height: auto;padding: 6px;text-align: center;
+    width: 179px;word-wrap: break-word;}
+.clr {clear: both; display: block;}
+.super-box{ margin-bottom: 60px;margin-top: 64px;}
+.black_overlay { background: none repeat scroll 0 0 #000000; height: 100%; left: 0; opacity: 0.8; filter: alpha(opacity=80); position: fixed; top: 0; width: 100%; z-index:1; }
+.popup_wrapper { background: none repeat scroll 0 0 #FFFFFF; border-radius: 10px; left: 40%; margin: 0 0 0 -350px; position: fixed; top: 10%; width: 1000px; z-index:100; padding-bottom: 10px; height: 500px;overflow: scroll}
+.popup_wrapper h2 { background: none repeat scroll 0 0 #364e63; border-radius: 6px 6px 0 0; color: #FFFFFF; font-size: 20px; font-weight: normal; margin: 0; padding: 10px 15px; }
+.popup_wrapper p { font-weight: bold; }
+.popup_wrapper form { padding: 0 10px; }
+.popup_wrapper form .form-item { margin: 10px 0; }
+.popup_wrapper form .form-item label { display: inline-block; font-weight: bold; margin: 0 5px 0 0; text-align: right; vertical-align: middle; width: 150px; }
+.popup_wrapper form .form-item input { border: 1px solid #364E63; border-radius: 5px; padding: 5px; width: 240px; }
+.popup_wrapper h3 { color: #364E63; font-size: 14px; margin: 20px 0; }
+.popup_wrapper table { width:100%; text-align:center; }
+.popup_wrapper table th { font-size: 14px; font-weight: bold; padding: 5px; }
+.popup_wrapper table td { padding: 5px; vertical-align:middle; }
+.popup_wrapper table td:nth-child(2), .popup_wrapper table th:nth-child(2) { text-align: left; }
+.popup_wrapper table td select { padding: 3px; width: 60px; font-size: 12px; }
+.popup_wrapper form .form_submit { text-align: left; }
+/*.popup_wrapper .close_btn { background: url("../images/close_icon.png") no-repeat; display: block; height: 22px; position: absolute; right: 8px; top: 8px; width: 22px; }*/
+.popup_wrapper .edit_schedule form .form_submit { padding: 5px 0 0 340px; }
+.popup_wrapper .edit_schedule table td:nth-child(2), .popup_wrapper .edit_schedule table th:nth-child(2) { text-align: center; }
+.p30{padding: 30px;}
+.mt13{margin-top: 13px;}

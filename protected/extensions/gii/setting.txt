@@ -1,0 +1,9 @@
+        'gii' => array(
+            'class' => 'system.gii.GiiModule',
+            'password' => 'univariety',
+            'generatorPaths' => array(
+                'ext.gii', // a path alias
+            ),
+            // If removed, Gii defaults to localhost only. Edit carefully to taste.
+            'ipFilters' => array('10.0.0.37', '10.0.0.104', '::1', '10.0.0.63', '10.0.0.43', 'univariety', 'localhost', '127.0.0.1'),
+        ),
