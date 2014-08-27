@@ -42,7 +42,7 @@
     ),
 )); ?>
 
-<div class="container-fluid" id="page">
+<div class="container" id="page">
     <?php $this->widget('bootstrap.widgets.TbAlert', array(
         'block'=>true, // display a larger alert block?
         'fade'=>true, // use transitions?
