@@ -29,4 +29,15 @@ class Sewadars extends BaseSewadars
             array('sewadar_id, badge_no, serial_no, old_badge_no, sewadar_name, father_dauther_son_wife_of, relation, section, old_section, mobile_primary, mobile_secondary, gender, date_of_birth, age, address1, address2, address3, district, state, date_of_initiation, qualification, profession, specialization, sewardar_picture, date_of_creation, blood_group, is_technical', 'safe', 'on'=>'search'),
         );
     }
+
+    public function relations()
+    {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
+        return array(
+            'bloodGroup' => array(self::BELONGS_TO, 'BloodGroup', 'blood_group'),
+            'section0' => array(self::BELONGS_TO, 'SewaSections', 'section'),
+            'nominalRollDetail' => array(self::BELONGS_TO, 'NominalRollDetail', 'sewadar'),
+        );
+    }
 }

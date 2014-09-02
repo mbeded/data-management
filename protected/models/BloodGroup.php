@@ -30,6 +30,7 @@ class BloodGroup extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('blood_group_name,blood_group_type', 'required'),
 			array('blood_group_name', 'length', 'max'=>45),
 			array('blood_group_type', 'length', 'max'=>1),
 			// The following rule is used by search().

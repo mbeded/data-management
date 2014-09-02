@@ -1,6 +1,6 @@
 <?php
 
-class BloodGroupController extends Controller
+class SewaSectionsController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -61,16 +61,16 @@ class BloodGroupController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new BloodGroup;
+		$model=new SewaSections;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['BloodGroup']))
+		if(isset($_POST['SewaSections']))
 		{
-			$model->attributes=$_POST['BloodGroup'];
+			$model->attributes=$_POST['SewaSections'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->blood_group_id));
+				$this->redirect(array('admin'));
 		}
 
 		$this->render('create',array(
@@ -90,11 +90,11 @@ class BloodGroupController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['BloodGroup']))
+		if(isset($_POST['SewaSections']))
 		{
-			$model->attributes=$_POST['BloodGroup'];
+			$model->attributes=$_POST['SewaSections'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->blood_group_id));
+                $this->redirect(array('admin'));
 		}
 
 		$this->render('update',array(
@@ -127,7 +127,7 @@ class BloodGroupController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('BloodGroup');
+		$dataProvider=new CActiveDataProvider('SewaSections');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -138,10 +138,10 @@ class BloodGroupController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new BloodGroup('search');
+		$model=new SewaSections('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['BloodGroup']))
-			$model->attributes=$_GET['BloodGroup'];
+		if(isset($_GET['SewaSections']))
+			$model->attributes=$_GET['SewaSections'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -155,7 +155,7 @@ class BloodGroupController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=BloodGroup::model()->findByPk($id);
+		$model=SewaSections::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -167,7 +167,7 @@ class BloodGroupController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='blood-group-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='sewa-sections-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

@@ -1,7 +1,10 @@
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'nominal-roll-form',
 	'enableAjaxValidation'=>false,
-)); ?>
+));
+//CVarDumper::dump($NominalRollUserList,10,true);
+$sewadarName = CHtml::listData($NominalRollUserList,'sewadar_id','sewadars.sewadar_name');
+?>
 	<?php //echo $form->errorSummary($model); ?>
 <table cellpadding ='12'>
     <tr>
@@ -23,6 +26,10 @@
 
             <?php echo $form->textFieldRow($model,'zone_name',array('class'=>'span2','maxlength'=>10)); ?>
         </td>
+
+
+    </tr>
+    <tr>
         <td>
             <?php
 
@@ -31,10 +38,6 @@
         <td>
             <?php echo $form->textFieldRow($model,'sewa_type',array('class'=>'span2','maxlength'=>225)); ?>
         </td>
-
-    </tr>
-
-    <tr>
         <td>
             <?php
             echo $form->textFieldRow($model,'driver_vehicle_no',array('class'=>'span2','maxlength'=>225)); ?>
@@ -48,6 +51,9 @@
             $model->drive_name = 'Balwinder Singh';
             echo $form->textFieldRow($model,'drive_name',array('class'=>'span2','maxlength'=>225)); ?>
         </td>
+    </tr>
+    <tr>
+
         <td>
             <?php
             echo $form->textFieldRow($model,'drive_mobile_no',array('class'=>'span2')); ?>
@@ -87,14 +93,15 @@
             <?php
             echo $form->textFieldRow($model,'destination',array('class'=>'span2')); ?>
         </td>
-    </tr>
-    <tr>
+
         <td>
             <?php
-                $area = CHtml::ListData(basic::getAreas(),'area_id','area_name');
-                echo $form->dropDownListRow($model,'area_id',$area,array('empty'=>'Select An Area', 'class'=>'span2'));
+            $area = CHtml::ListData(basic::getAreas(),'area_id','area_name');
+            echo $form->dropDownListRow($model,'area_id',$area,array('empty'=>'Select An Area', 'class'=>'span2'));
             ?>
         </td>
+    </tr>
+    <tr>
         <td>
         <?php
             $centre = CHtml::ListData(basic::getSatsangCentre(),'centre_id','centre_name');
@@ -102,27 +109,28 @@
         ?>
         </td>
         <td>
-            <?php echo $form->textFieldRow($model,'sewadar_id',array('class'=>'span2')); ?>
+            <?php //echo $form->textFieldRow($model,'sewadar_id',array('class'=>'span2')); ?>
+            <?php echo $form->dropDownListRow($model,'sewadar_id',$sewadarName, array('class'=>'span2', 'empty' =>'Select Jathedar')); ?>
         </td>
-        <td>
+        <!--<td>
             <?php echo $form->textFieldRow($model,'incharge_badge_no',array('class'=>'span2')); ?>
         </td>
         <td>
             <?php echo $form->textFieldRow($model,'incharge_mobile_no',array('class'=>'span2')); ?>
-        </td>
+        </td>-->
 
-        <td colspan="2">
-            <?php echo $form->textFieldRow($model,'secretary_president_mobile_no',array('class'=>'span4')); ?>
+        <td>
+            <?php echo $form->textFieldRow($model,'secretary_president_mobile_no',array('class'=>'span2')); ?>
 
         </td>
-    </tr>
-    <tr>
         <td>
             <?php echo $form->textFieldRow($model,'department_name',array('class'=>'span2','maxlength'=>225)); ?>
         </td>
         <td>
-            <?php echo $form->DropDownListRow($model,'sewa_sent',array('YES'=>'Yes','NO'=>'No'),array('class'=>'span2')); ?>
+            <?php echo $form->dropDownListRow($model,'sewa_sent',array('YES'=>'Yes','NO'=>'No'),array('class'=>'span2', 'empty' => 'Select Sewa Status')); ?>
         </td>
+    </tr>
+    <tr>
         <td>
             <?php echo $form->textFieldRow($model,'sewa_not_sent_reason',array('class'=>'span2')); ?>
         </td>
@@ -137,14 +145,16 @@
             <?php echo $form->textFieldRow($model,'total_sewadar',array('class'=>'span2','readonly'=>'readonly')); ?>
         </td>
         <td>
-		<?php $this->widget('bootstrap.widgets.TbButton', array(
+		<?php
+        $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'type'=>'primary',
 			'label'=>$model->isNewRecord ? 'Create' : 'Save',
             'htmlOptions'=>array(
-                'class'=>'span1 mt13',
+                'class'=>'mt13',
             ),
 		)); ?>
+            <?php echo CHtml::link('Print',array('printSewa','id'=>$model->nominal_roll_id),array('class' => 'btn btn-primary mt13')); ?>
         </td>
     </tr>
 </table>

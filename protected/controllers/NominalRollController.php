@@ -143,8 +143,9 @@ class NominalRollController extends Controller
 	{
 		$model=$this->loadModel($id);
         $sewadarModel = new Sewadars();
-        $NominalRollUserList = NominalRollDetail::model()->findAll('nominal_roll_id=:id',array(':id'=>$id));
+        $NominalRollUserList = NominalRollDetail::model()->with('sewadars')->findAll('nominal_roll_id=:id',array(':id'=>$id));
         $ListData  = array();
+
         if (isset($_REQUEST['Sewadars'])) {
             $sewadarModel->attributes = $_REQUEST['Sewadars'];
             $criteria = new CDbCriteria;
@@ -154,14 +155,18 @@ class NominalRollController extends Controller
             $ListData = $sewadarModel->findAll($criteria);
         }
 
+
         if(isset($_POST['NominalRoll']))
 		{
 			$model->attributes=$_POST['NominalRoll'];
             $model->sewa_not_sent_reason = $_POST['NominalRoll']['sewa_not_sent_reason'];
             $model->sewa_not_sent_reason = $_POST['NominalRoll']['sewa_not_sent_reason'];
             $model->sewadar_id  = $_POST['NominalRoll']['sewadar_id'];
-            $model->incharge_badge_no = $_POST['NominalRoll']['incharge_badge_no'];
-            $model->incharge_mobile_no = $_POST['NominalRoll']['incharge_mobile_no'];
+            if ($model->sewadar_id) {
+                $SewadarData = Sewadars::model()->findByPk($model->sewadar_id);
+                $model->incharge_badge_no = $SewadarData->badge_no;
+                $model->incharge_mobile_no = $SewadarData->	mobile_primary;
+            }
             if($model->save())
 				$this->redirect(array('update','id'=>$model->nominal_roll_id));
 		}

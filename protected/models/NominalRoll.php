@@ -55,7 +55,7 @@ class NominalRoll extends BaseNominalRoll
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('serial_no, centre_name, dated, area_name, zone_name, help_line_no, driver_vehicle_no, driver_vehicle_type, drive_name, drive_mobile_no, period_from, period_to, destination, area_id, centre_id, secretary_president_mobile_no, sewa_type, sewa_sent, department_name', 'required'),
+            array('serial_no, centre_name, dated, area_name, zone_name, help_line_no, driver_vehicle_no, driver_vehicle_type, drive_name, drive_mobile_no, period_from, period_to, destination, area_id, centre_id, secretary_president_mobile_no, sewa_type, department_name', 'required'),
             array('serial_no, drive_mobile_no, area_id, centre_id, total_sewadar, total_male, total_female', 'numerical', 'integerOnly'=>true),
             array('centre_name, area_name, driver_vehicle_no, driver_vehicle_type, drive_name, sewa_type, department_name', 'length', 'max'=>225),
             array('zone_name', 'length', 'max'=>10),

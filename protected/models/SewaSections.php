@@ -31,8 +31,8 @@ class SewaSections extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('section_jathedar_mobile_no, section_jathedar_mobile_secondary', 'numerical', 'integerOnly'=>true),
-			array('section_name, section_jathedar_name', 'length', 'max'=>45),
+            array('section_name', 'required'),
+            array('section_jathedar_mobile_no, section_jathedar_mobile_secondary', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('section_id, section_name, section_jathedar_name, section_jathedar_mobile_no, section_jathedar_mobile_secondary', 'safe', 'on'=>'search'),
@@ -59,9 +59,9 @@ class SewaSections extends CActiveRecord
 		return array(
 			'section_id' => 'Section',
 			'section_name' => 'Section Name',
-			'section_jathedar_name' => 'Section Jathedar Name',
-			'section_jathedar_mobile_no' => 'Section Jathedar Mobile No',
-			'section_jathedar_mobile_secondary' => 'Section Jathedar Mobile Secondary',
+			'section_jathedar_name' => 'Jathedar Name',
+			'section_jathedar_mobile_no' => 'Jathedar Mobile No',
+			'section_jathedar_mobile_secondary' => 'Jathedar Mobile Secondary',
 		);
 	}
 

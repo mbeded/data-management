@@ -19,7 +19,7 @@ $('.search-form form').submit(function(){
 ?>
 
 <h1>Manage Areas</h1>
-
+<p>------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
     <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'area-grid',
 	'dataProvider'=>$model->search(),

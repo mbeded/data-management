@@ -18,8 +18,8 @@ $('.search-form form').submit(function(){
 ?>
 
 <h1>Sewadars List</h1>
-
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button btn')); ?>
+<p>------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+<!--<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button btn')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
@@ -27,7 +27,7 @@ $('.search-form form').submit(function(){
     'age'=>$age,
     'bloodGroup'=>$bloodGroup,
 )); ?>
-</div><!-- search-form -->
+</div>-->
 
 <?php
 $file_Path = Yii::getPathOfAlias('webroot.attachments.sewadars_images');
@@ -37,7 +37,7 @@ $this->widget('bootstrap.widgets.TbGridView',array(
 	'filter'=>$model,
 	'columns'=>array(
         array(
-          'header' => 'Sewadar Image',
+          'header' => '',
           'name' => 'sewardar_picture',
           'type' => 'raw',
           'value' => '($data->sewardar_picture!="") ? CHtml::image(Yii::app()->request->baseUrl."/attachments/sewadars_images/".$data->sewardar_picture, $data->sewardar_picture,array("width"=>100,"height"=>100)) : CHtml::image(Yii::app()->request->baseUrl."/attachments/sewadars_images/no-pic.png","no image uploaded",array("width"=>100,"height"=>100))',

@@ -17,9 +17,18 @@
         array(
             'class'=>'bootstrap.widgets.TbMenu',
             'items'=>array(
+                array('label'=>'Blood Group', 'url'=>array('/BloodGroup/admin'), 'items' => array(
+                    array('label' => 'Register New BloodGroup', 'url' => array('/BloodGroup/create')),
+                    array('label' => 'BloodGroup List', 'url' => array('/BloodGroup/admin')),
+                )),
+
                 array('label'=>'Area', 'url'=>array('/area/admin'), 'items' => array(
                     array('label' => 'Register New Area', 'url' => array('/area/create')),
                     array('label' => 'Area List', 'url' => array('/area/admin')),
+                )),
+                array('label'=>'Sections', 'url'=>array('/SewaSections/admin'), 'items' => array(
+                    array('label' => 'Register New Section', 'url' => array('/SewaSections/create')),
+                    array('label' => 'Section List', 'url' => array('/SewaSections/admin')),
                 )),
                 array('label'=>'Centres', 'url'=>array('/satsangCentre/admin'), 'items' => array(
                     array('label' => 'Register New Centre', 'url' => array('/satsangCentre/create')),

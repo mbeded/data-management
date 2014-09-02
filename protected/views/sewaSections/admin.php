@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Nominal Rolls'=>array('index'),
+	'Sewa Sections'=>array('index'),
 	'Manage',
 );
 
@@ -10,7 +10,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('nominal-roll-grid', {
+	$.fn.yiiGridView.update('sewa-sections-grid', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -18,44 +18,36 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Nominal Rolls</h1>
+<h1>Sections List</h1>
 <p>------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
 <?php //echo CHtml::link('Advanced Search','#',array('class'=>'search-button btn')); ?>
+<!--<div class="search-form" style="display:none">
+<?php $this->renderPartial('_search',array(
+	'model'=>$model,
+)); ?>
+</div>-->
 
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
-	'id'=>'nominal-roll-grid',
+	'id'=>'sewa-sections-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'destination',
-		'total_sewadar',
-        'period_from',
-        'period_to',
-        'sewa_sent',
-		/*
-		'help_line_no',
-		'driver_vehicle_no',
-		'driver_vehicle_type',
-		'drive_name',
-		'drive_mobile_no',
-		'period_from',
-		'period_to',
-		'destination',
-		'area_id',
-		'centre_id',
-		'sewadar_id',
-		'incharge_badge_no',
-		'incharge_mobile_no',
-		'secretary_president_mobile_no',
-		'sewa_type',
-		'total_sewadar',
-		'total_male',
-		'total_female',
-		'department_name',
-		'created_on',
-		*/
+		'section_name',
+		array(
+            'name'=>'section_jathedar_name',
+            'header'=>'Jathedar Name',
+        ),
+		array(
+            'name' => 'section_jathedar_mobile_no',
+            'header' => 'Jathedar Mobile No.'
+        ),
+        array(
+            'name' => 'section_jathedar_mobile_secondary',
+            'header' => 'Jathedar Second Mobile No.'
+        ),
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
+            'template' => '{update}{delete}',
 		),
 	),
 )); ?>
