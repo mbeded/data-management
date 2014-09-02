@@ -8,11 +8,11 @@ $this->pageTitle=Yii::app()->name;
     'heading'=>'Welcome to '.CHtml::encode(Yii::app()->name),
 )); ?>
 
-<p>Congratulations! You have successfully created your Yii application.</p>
+<!--<p>Congratulations! You have successfully created your Yii application.</p>-->
 
 <?php $this->endWidget(); ?>
 
-<p>You may change the content of this page by modifying the following two files:</p>
+<!--<p>You may change the content of this page by modifying the following two files:</p>
 
 <ul>
     <li>View file: <code><?php echo __FILE__; ?></code></li>
@@ -23,3 +23,4 @@ $this->pageTitle=Yii::app()->name;
     the <a href="http://www.yiiframework.com/doc/">documentation</a>.
     Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
     should you have any questions.</p>
+-->
