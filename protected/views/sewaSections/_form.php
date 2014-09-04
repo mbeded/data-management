@@ -11,9 +11,9 @@
 
 	<?php echo $form->textFieldRow($model,'section_jathedar_name',array('class'=>'span5','maxlength'=>45)); ?>
 
-	<?php echo $form->textFieldRow($model,'section_jathedar_mobile_no',array('class'=>'span5')); ?>
+	<?php echo $form->textFieldRow($model,'section_jathedar_mobile_no',array('class'=>'span5', 'maxlength' => 10)); ?>
 
-	<?php echo $form->textFieldRow($model,'section_jathedar_mobile_secondary',array('class'=>'span5')); ?>
+	<?php echo $form->textFieldRow($model,'section_jathedar_mobile_secondary',array('class'=>'span5', 'maxlength' => 10)); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

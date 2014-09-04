@@ -34,8 +34,8 @@ return array(
 			'password'=>'admin',
 			'ipFilters'=>array('127.0.0.1','::1'),
             'generatorPaths' => array(
-                //'ext.gii', // a path alias
-                'bootstrap.gii',
+                'ext.gii', // a path alias
+                //'bootstrap.gii',
             ),
         ),
 	),
@@ -69,7 +69,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=data_management',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '',
+			'password' => 'root',
 			'charset' => 'utf8',
 		),
 

@@ -4,56 +4,11 @@ $this->breadcrumbs=array(
 	$model->nominal_roll_id=>array('view','id'=>$model->nominal_roll_id),
 	'Update',
 );
-
-echo $this->renderPartial('_update',array('model'=>$model, 'NominalRollUserList' => $NominalRollUserList));
-/*
-if(count($ListData)>0) { ?>
-
-    <div class="black_overlay"></div>
-    <div class="popup_wrapper p30">
-        <h3>Search Result</h3>
-        <table class="table">
-            <tr>
-                <th>Serial No</th>
-                <th>Badge No.</th>
-                <th>Name</th>
-                <th>Father/dauther/son/wife Name</th>
-                <th>Gender</th>
-                <th></th>
-            </tr>
-            <?php
-            foreach($ListData as $list) { ?>
-                <tr>
-                    <td><?php echo ($list->sewardar_picture!="") ? CHtml::image(Yii::app()->request->baseUrl."/attachments/sewadars_images/".$list->sewardar_picture, $list->sewardar_picture,array("width"=>100,"height"=>100)) : CHtml::image(Yii::app()->request->baseUrl."/attachments/sewadars_images/no-pic.png","no image uploaded",array("width"=>100,"height"=>100)); ?></td>
-                    <td><?php echo $list->serial_no; ?></td>
-                    <td><?php echo $list->badge_no; ?></td>
-                    <td><?php echo $list->sewadar_name; ?></td>
-                    <td><?php echo $list->father_dauther_son_wife_of; ?></td>
-                    <td><?php echo $list->gender; ?></td>
-                    <td><?php echo CHtml::link('+ Add',array('addSingleData','nominal_roll_id'=>$model->nominal_roll_id,'user_id'=>$list->sewadar_id),array('class' => 'btn'))?></td>
-                </tr>
-            <?php
-            }
-            ?>
-        </table>
-    </div>
-<?php
-}
-*/
-$this->beginWidget('bootstrap.widgets.TbModal', array('id'=>'myModal')); ?>
-
-    <div class="modal-header">
-        <a class="close" data-dismiss="modal">&times;</a>
-        <h4>Search for sewadar</h4>
-    </div>
-
-    <div class="modal-body">
-        <p><?php echo $this->renderPartial('_sewadar_search', array('model' => $sewadarModel)); ?></p>
-    </div>
-
-<?php
-$this->endWidget();
 ?>
+<div id="_nominal_roll"  style="display: none;">
+    <?php echo $this->renderPartial('_update',array('model'=>$model, 'NominalRollUserList' => $NominalRollUserList)); ?>
+</div>
+<?php echo CHtml::link('Show Detail', '#', array('class'=>'showDetail pull-right btn')); ?>
 <div class="">
     <div class="span4">
 
@@ -83,7 +38,10 @@ $this->endWidget();
                         <td><?php echo $i; ?></td>
                         <td><?php echo $data->sewadar_name; ?></td>
                         <td><?php echo $data->mobile_primary; ?></td>
-                        <td><?php echo CHtml::link('<i class="icon-trash"></i>',array('removeSingleData','id'=>$list->nominal_roll_detail_id))?></td>
+                        <td><?php
+                                echo CHtml::link('<i class="icon-trash"></i>',array('removeSingleData','id'=>$list->nominal_roll_detail_id),array('confirm' => 'Are you sure you want to delete `'.$data->sewadar_name.'` ,.  from sewa list'));
+
+                            ?></td>
                     </tr>
                     <?php $i++; } ?>
             </table>
@@ -93,6 +51,7 @@ $this->endWidget();
         }
         ?>
     </div>
+
 <div class="span1"></div>
     <div class="span5">
         <h2>Search Sewadar</h2>
@@ -157,6 +116,14 @@ $this->endWidget();
        }
         ?>
     </div>
-   <div class="clearfix"></div>
+    <div class="clearfix"></div>
 
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.showDetail').click(function(){
+            $('#_nominal_roll').slideToggle();
+            return false;
+        })
+    });
+</script>

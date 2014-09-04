@@ -1,6 +1,6 @@
 <?php
 
-class SewaSectionsController extends Controller
+class UsersController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -15,6 +15,7 @@ class SewaSectionsController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
+			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -61,19 +62,16 @@ class SewaSectionsController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model = new SewaSections;
+		$model=new Users;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['SewaSections']))
+		if(isset($_POST['Users']))
 		{
-			$model->attributes = $_POST['SewaSections'];
-			$model->section_jathedar_name = $_POST['SewaSections']['section_jathedar_name'];
-			$model->section_jathedar_mobile_no = $_POST['SewaSections']['section_jathedar_mobile_no'];
-			$model->section_jathedar_mobile_secondary = $_POST['SewaSections']['section_jathedar_mobile_secondary'];
+			$model->attributes=$_POST['Users'];
 			if($model->save())
-				$this->redirect(array('admin'));
+				$this->redirect(array('view','id'=>$model->user_id));
 		}
 
 		$this->render('create',array(
@@ -93,14 +91,11 @@ class SewaSectionsController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['SewaSections']))
+		if(isset($_POST['Users']))
 		{
-            $model->attributes = $_POST['SewaSections'];
-            $model->section_jathedar_name = $_POST['SewaSections']['section_jathedar_name'];
-            $model->section_jathedar_mobile_no = $_POST['SewaSections']['section_jathedar_mobile_no'];
-            $model->section_jathedar_mobile_secondary = $_POST['SewaSections']['section_jathedar_mobile_secondary'];
-            if($model->save())
-                $this->redirect(array('admin'));
+			$model->attributes=$_POST['Users'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->user_id));
 		}
 
 		$this->render('update',array(
@@ -115,17 +110,11 @@ class SewaSectionsController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		if(Yii::app()->request->isPostRequest)
-		{
-			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
+		$this->loadModel($id)->delete();
 
-			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-			if(!isset($_GET['ajax']))
-				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-		}
-		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+		if(!isset($_GET['ajax']))
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
 	/**
@@ -133,7 +122,7 @@ class SewaSectionsController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('SewaSections');
+		$dataProvider=new CActiveDataProvider('Users');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -144,10 +133,10 @@ class SewaSectionsController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new SewaSections('search');
+		$model=new Users('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['SewaSections']))
-			$model->attributes=$_GET['SewaSections'];
+		if(isset($_GET['Users']))
+			$model->attributes=$_GET['Users'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -157,11 +146,13 @@ class SewaSectionsController extends Controller
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
-	 * @param integer the ID of the model to be loaded
+	 * @param integer $id the ID of the model to be loaded
+	 * @return Users the loaded model
+	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=SewaSections::model()->findByPk($id);
+		$model=Users::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -169,11 +160,11 @@ class SewaSectionsController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param CModel the model to be validated
+	 * @param Users $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='sewa-sections-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='users-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

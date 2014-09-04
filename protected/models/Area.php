@@ -22,6 +22,7 @@ class Area extends BaseArea
         // will receive user inputs.
         return array(
             array('area_name', 'required'),
+            array('area_name', 'unique'),
             array('area_name', 'length', 'max'=>45),
             array('area_description', 'safe'),
             // The following rule is used by search().

@@ -21,6 +21,7 @@ class Sewadars extends BaseSewadars
         return array(
             array('serial_no, section, sewadar_name, is_technical', 'required'),
             array('badge_no', 'unique'),
+            array('mobile_primary, mobile_secondary', 'numerical'),
             array('badge_no, serial_no, old_badge_no, section, mobile_primary, mobile_secondary, age, blood_group, is_technical', 'numerical', 'integerOnly'=>true),
             array('sewadar_name, father_dauther_son_wife_of, relation, old_section, qualification, profession, specialization, sewardar_picture', 'length', 'max'=>45),
             array('gender', 'length', 'max'=>6),
@@ -40,4 +41,38 @@ class Sewadars extends BaseSewadars
             'nominalRollDetail' => array(self::BELONGS_TO, 'NominalRollDetail', 'sewadar'),
         );
     }
+
+    public function attributeLabels()
+    {
+        return array(
+            'sewadar_id' => 'Sewadar',
+            'badge_no' => 'Badge No',
+            'serial_no' => 'Serial No',
+            'old_badge_no' => 'Old Badge No',
+            'sewadar_name' => 'Sewadar Name',
+            'father_dauther_son_wife_of' => 'Father Dauther Son Wife Of',
+            'relation' => 'Relation',
+            'section' => 'Section',
+            'old_section' => 'Old Section',
+            'mobile_primary' => 'Mobile Primary',
+            'mobile_secondary' => 'Mobile Secondary',
+            'gender' => 'Gender',
+            'date_of_birth' => 'Date Of Birth',
+            'age' => 'Age',
+            'address1' => 'House No.',
+            'address2' => 'Area / Colony',
+            'address3' => 'City',
+            'district' => 'District',
+            'state' => 'State',
+            'date_of_initiation' => 'Date Of Initiation',
+            'qualification' => 'Qualification',
+            'profession' => 'Profession',
+            'specialization' => 'Specialization',
+            'sewardar_picture' => 'Sewardar Picture',
+            'date_of_creation' => 'Date Of Creation',
+            'blood_group' => 'Blood Group',
+            'is_technical' => 'Is Technical',
+        );
+    }
+
 }

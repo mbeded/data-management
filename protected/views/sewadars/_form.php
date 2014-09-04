@@ -24,8 +24,8 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
     <tr>
         <td><?php echo $form->dropDownListRow($model,'section',CHtml::listData($sections, 'section_id', 'section_name'), array('class'=>'span3','empty'=>'Select Old Sewa Section')); ?></td>
         <td><?php echo $form->dropDownListRow($model,'old_section',CHtml::listData($sections, 'section_name', 'section_name'), array('class'=>'span3','empty'=>'Select Sewa Section')); ?></td>
-        <td><?php echo $form->textFieldRow($model,'mobile_primary',array('class'=>'span3')); ?></td>
-        <td><?php echo $form->textFieldRow($model,'mobile_secondary',array('class'=>'span3')); ?></td>
+        <td><?php echo $form->textFieldRow($model,'mobile_primary',array('class'=>'span3', 'maxlength' => '10')); ?></td>
+        <td><?php echo $form->textFieldRow($model,'mobile_secondary',array('class'=>'span3', 'maxlength' => '10')); ?></td>
     </tr>
 
     <tr>
@@ -69,10 +69,10 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
         <td><?php echo $form->textFieldRow($model,'address1',array('rows'=>6, 'cols'=>50, 'class'=>'span3')); ?></td>
         <td><?php echo $form->textFieldRow($model,'address2',array('rows'=>6, 'cols'=>50, 'class'=>'span3')); ?></td>
         <td><?php echo $form->textFieldRow($model,'address3',array('rows'=>6, 'cols'=>50, 'class'=>'span3')); ?></td>
-        <td><?php echo $form->textFieldRow($model,'district',array('rows'=>6, 'cols'=>50, 'class'=>'span3')); ?></td>
+        <td><?php echo $form->textFieldRow($model,'state',array('rows'=>6, 'cols'=>50, 'class'=>'span3')); ?></td>
     </tr>
     <tr>
-        <td><?php echo $form->textFieldRow($model,'state',array('rows'=>6, 'cols'=>50, 'class'=>'span3')); ?></td>
+        <td><?php echo $form->textFieldRow($model,'district',array('rows'=>6, 'cols'=>50, 'class'=>'span3')); ?></td>
         <td><?php echo $form->textFieldRow($model,'qualification',array('class'=>'span3','maxlength'=>45)); ?></td>
         <td><?php echo $form->textFieldRow($model,'profession',array('class'=>'span3','maxlength'=>45)); ?></td>
         <td><?php echo $form->textFieldRow($model,'specialization',array('class'=>'span3','maxlength'=>45)); ?></td>

@@ -140,23 +140,23 @@
             echo $form->textFieldRow($model,'department_name',array('class'=>'span2','maxlength'=>225)); ?>
         </td>
         <td>
-            <?php echo $form->dropDownListRow($model,'sewa_sent',array('YES'=>'Yes','NO'=>'No'),array('class'=>'span2', 'empty' => 'Select Sewa Status')); ?>
+            <?php echo $form->dropDownListRow($model,'sewa_sent',array('PROGRESS'=>'Creating Process' ,'YES'=>'Yes','NO'=>'No'),array('class'=>'span2', 'empty' => 'Select Sewa Status')); ?>
         </td>
         <td>
             <?php echo $form->textFieldRow($model,'sewa_not_sent_reason',array('class'=>'span2')); ?>
         </td>
 
         <td>
-            <?php echo $form->textFieldRow($model,'total_male',array('class'=>'span2','readonly'=>'readonly')); ?>
+            <?php echo $form->textFieldRow($model,'total_male',array('class'=>'span2')); ?>
         </td>
         <td>
-            <?php echo $form->textFieldRow($model,'total_female',array('class'=>'span2','readonly'=>'readonly')); ?>
+            <?php echo $form->textFieldRow($model,'total_female',array('class'=>'span2')); ?>
         </td>
     </tr>
 
     <tr>
         <td>
-            <?php echo $form->textFieldRow($model,'total_sewadar',array('class'=>'span2','readonly'=>'readonly')); ?>
+            <?php echo $form->textFieldRow($model,'total_sewadar',array('class'=>'span2')); ?>
         </td>
         <td>
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

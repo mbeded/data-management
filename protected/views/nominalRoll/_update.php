@@ -2,10 +2,8 @@
 	'id'=>'nominal-roll-form',
 	'enableAjaxValidation'=>false,
 ));
-//CVarDumper::dump($NominalRollUserList,10,true);
 $sewadarName = CHtml::listData($NominalRollUserList,'sewadar_id','sewadars.sewadar_name');
 ?>
-	<?php //echo $form->errorSummary($model); ?>
 <table cellpadding ='12'>
     <tr>
         <td>
@@ -127,7 +125,7 @@ $sewadarName = CHtml::listData($NominalRollUserList,'sewadar_id','sewadars.sewad
             <?php echo $form->textFieldRow($model,'department_name',array('class'=>'span2','maxlength'=>225)); ?>
         </td>
         <td>
-            <?php echo $form->dropDownListRow($model,'sewa_sent',array('YES'=>'Yes','NO'=>'No'),array('class'=>'span2', 'empty' => 'Select Sewa Status')); ?>
+            <?php echo $form->dropDownListRow($model,'sewa_sent',array('PROGRESS'=>'Creating Process' ,'YES'=>'Yes','NO'=>'No'),array('class'=>'span2', 'empty' => 'Select Sewa Status')); ?>
         </td>
     </tr>
     <tr>
@@ -136,25 +134,26 @@ $sewadarName = CHtml::listData($NominalRollUserList,'sewadar_id','sewadars.sewad
         </td>
 
         <td>
-            <?php echo $form->textFieldRow($model,'total_male',array('class'=>'span2','readonly'=>'readonly')); ?>
+            <?php echo $form->textFieldRow($model,'total_male',array('class'=>'span2')); ?>
         </td>
         <td>
-            <?php echo $form->textFieldRow($model,'total_female',array('class'=>'span2','readonly'=>'readonly')); ?>
+            <?php echo $form->textFieldRow($model,'total_female',array('class'=>'span2')); ?>
         </td>
         <td>
-            <?php echo $form->textFieldRow($model,'total_sewadar',array('class'=>'span2','readonly'=>'readonly')); ?>
+            <?php echo $form->textFieldRow($model,'total_sewadar',array('class'=>'span2')); ?>
         </td>
         <td>
 		<?php
-        $this->widget('bootstrap.widgets.TbButton', array(
-			'buttonType'=>'submit',
-			'type'=>'primary',
-			'label'=>$model->isNewRecord ? 'Create' : 'Save',
-            'htmlOptions'=>array(
-                'class'=>'mt13',
-            ),
-		)); ?>
-            <?php echo CHtml::link('Print',array('printSewa','id'=>$model->nominal_roll_id),array('class' => 'btn btn-primary mt13')); ?>
+            $this->widget('bootstrap.widgets.TbButton', array(
+                'buttonType'=>'submit',
+                'type'=>'primary',
+                'label'=>$model->isNewRecord ? 'Create' : 'Save',
+                'htmlOptions'=>array(
+                    'class'=>'mt13',
+                ),
+            )); ?>
+            <?php echo CHtml::link('Print',array('printSewa','id'=>$model->nominal_roll_id),array('class' => 'btn btn-primary mt13'));
+        ?>
         </td>
     </tr>
 </table>

@@ -1,26 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "stng_sewa_sections".
+ * This is the model class for table "stng_users".
  *
- * The followings are the available columns in table 'stng_sewa_sections':
- * @property integer $section_id
- * @property string $section_name
- * @property string $section_jathedar_name
- * @property integer $section_jathedar_mobile_no
- * @property integer $section_jathedar_mobile_secondary
- *
- * The followings are the available model relations:
- * @property Sewadars[] $sewadars
+ * The followings are the available columns in table 'stng_users':
+ * @property integer $user_id
+ * @property string $username
+ * @property string $password
+ * @property string $email
+ * @property string $status
+ * @property string $user_type
  */
-class SewaSections extends CActiveRecord
+class Users extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'stng_sewa_sections';
+		return 'stng_users';
 	}
 
 	/**
@@ -31,12 +29,13 @@ class SewaSections extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-            array('section_name', 'required'),
-            array('section_name', 'unique'),
-            array('section_jathedar_mobile_no, section_jathedar_mobile_secondary', 'numerical', 'integerOnly'=>true),
+			array('username, password, email, status, user_type', 'required'),
+			array('username, password, email', 'length', 'max'=>225),
+			array('status', 'length', 'max'=>7),
+			array('user_type', 'length', 'max'=>5),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('section_id, section_name, section_jathedar_name, section_jathedar_mobile_no, section_jathedar_mobile_secondary', 'safe', 'on'=>'search'),
+			array('user_id, username, password, email, status, user_type', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,7 +47,6 @@ class SewaSections extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'sewadars' => array(self::HAS_MANY, 'Sewadars', 'section'),
 		);
 	}
 
@@ -58,11 +56,12 @@ class SewaSections extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'section_id' => 'Section',
-			'section_name' => 'Section Name',
-			'section_jathedar_name' => 'Jathedar Name',
-			'section_jathedar_mobile_no' => 'Jathedar Mobile No',
-			'section_jathedar_mobile_secondary' => 'Jathedar Mobile Secondary',
+			'user_id' => 'User',
+			'username' => 'Username',
+			'password' => 'Password',
+			'email' => 'Email',
+			'status' => 'Status',
+			'user_type' => 'User Type',
 		);
 	}
 
@@ -84,11 +83,12 @@ class SewaSections extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('section_id',$this->section_id);
-		$criteria->compare('section_name',$this->section_name,true);
-		$criteria->compare('section_jathedar_name',$this->section_jathedar_name,true);
-		$criteria->compare('section_jathedar_mobile_no',$this->section_jathedar_mobile_no);
-		$criteria->compare('section_jathedar_mobile_secondary',$this->section_jathedar_mobile_secondary);
+		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('username',$this->username,true);
+		$criteria->compare('password',$this->password,true);
+		$criteria->compare('email',$this->email,true);
+		$criteria->compare('status',$this->status,true);
+		$criteria->compare('user_type',$this->user_type,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -99,7 +99,7 @@ class SewaSections extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return SewaSections the static model class
+	 * @return Users the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
