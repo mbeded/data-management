@@ -68,8 +68,8 @@
         ?>
         <tr>
             <td align="center"><?php echo $counter; ?></td>
-            <td><?php echo $data->sewadar_name; ?></td>
-            <td><?php echo $data->father_dauther_son_wife_of; ?></td>
+            <td align="left">&nbsp;&nbsp;<?php echo $data->sewadar_name; ?></td>
+            <td align="left">&nbsp;&nbsp;<?php echo $data->father_dauther_son_wife_of; ?></td>
             <td align="center"><?php echo ($data->gender == 'MALE') ? 'M' : 'F'; ?></td>
             <td align="center"><?php echo $age; ?></td>
             <td></td>
@@ -108,11 +108,11 @@
 
             <u><strong><center>For Area/Zonal Office Use</center></strong></u>
             <section style="float:left; padding:15px 0px 5px 10px;" >
-                Sr. No. : <?php echo $NominalRoll->serial_no; ?><br>
+                Sr. No. : <br>
                 DATED: <?php echo date('d/m/Y' , strtotime($NominalRoll->dated)); ?><br>
-                No. Of Male Sewadars:<?php echo $NominalRoll->total_male; ?><br>
-                No. Of Female Sewadars:<?php echo $NominalRoll->total_female; ?><br>
-                Total Sewadars:<?php echo $NominalRoll->total_sewadar; ?>
+                No. Of Male Sewadars:<br>
+                No. Of Female Sewadars:<br>
+                Total Sewadars:
             </section>
             <section style="float:right; padding:10px 10px 5px 0px;"  >
                 Area Secretary Contact Nos. <?php echo $NominalRoll->total_sewadar; ?> <br>
