@@ -23,7 +23,6 @@ $this->breadcrumbs=array(
                     <th>Contact No.</th>
                 </tr>
                 </thead>
-
                 <?php
                 $i= 1;
                 foreach($NominalRollUserList as $list) {
@@ -34,14 +33,10 @@ $this->breadcrumbs=array(
                     $age =  $interval->format('%y');
                     ?>
                     <tr>
-
                         <td><?php echo $i; ?></td>
                         <td><?php echo $data->sewadar_name; ?></td>
                         <td><?php echo $data->mobile_primary; ?></td>
-                        <td><?php
-                                echo CHtml::link('<i class="icon-trash"></i>',array('removeSingleData','id'=>$list->nominal_roll_detail_id),array('confirm' => 'Are you sure you want to delete `'.$data->sewadar_name.'` ,.  from sewa list'));
-
-                            ?></td>
+                        <td><?php echo CHtml::link('<i class="icon-trash"></i>',array('removeSingleData','id'=>$list->nominal_roll_detail_id),array('confirm' => 'Are you sure you want to delete `'.$data->sewadar_name.'` ,.  from sewa list')); ?></td>
                     </tr>
                     <?php $i++; } ?>
             </table>

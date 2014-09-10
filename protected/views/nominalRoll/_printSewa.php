@@ -57,7 +57,7 @@
 <th>Contact No.</th>
 
     <?php
-    $counter = 1;
+    $counter = 2;
     foreach($NominalRollDetail as $list) {
 
         $data = Sewadars::model()->findByPk($list->sewadar_id);
@@ -108,11 +108,11 @@
 
             <u><strong><center>For Area/Zonal Office Use</center></strong></u>
             <section style="float:left; padding:15px 0px 5px 10px;" >
-                Sr. No. : <?php echo $NominalRoll->serial_no; ?><br>
+                Sr. No. : <br>
                 DATED: <?php echo date('d/m/Y' , strtotime($NominalRoll->dated)); ?><br>
-                No. Of Male Sewadars:<?php echo $NominalRoll->total_male; ?><br>
-                No. Of Female Sewadars:<?php echo $NominalRoll->total_female; ?><br>
-                Total Sewadars:<?php echo $NominalRoll->total_sewadar; ?>
+                No. Of Male Sewadars:<br>
+                No. Of Female Sewadars:<br>
+                Total Sewadars:
             </section>
             <section style="float:right; padding:10px 10px 5px 0px;"  >
                 Area Secretary Contact Nos. <?php echo $NominalRoll->total_sewadar; ?> <br>

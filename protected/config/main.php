@@ -69,7 +69,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=data_management',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'root',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 
