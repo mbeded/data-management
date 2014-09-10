@@ -74,11 +74,12 @@ class NominalRollController extends Controller
             array(':nonimal_id' => $nominal_roll_id, ':user_id' => $user_id)
         );
         if (!$exist) {
-
             if ($UserData->gender == 'FEMALE' ) {
                 basic::addTotalSewadarCount($nominal_roll_id, 'Female');
+                $model->order = 2;
             } else {
                 basic::addTotalSewadarCount($nominal_roll_id, 'Male');
+                $model->order = 1;
             }
 
             $model->nominal_roll_id = $nominal_roll_id;
@@ -143,7 +144,13 @@ class NominalRollController extends Controller
 	{
 		$model=$this->loadModel($id);
         $sewadarModel = new Sewadars();
-        $NominalRollUserList = NominalRollDetail::model()->with('sewadars')->findAll('nominal_roll_id=:id',array(':id'=>$id));
+
+        $criteria = new CDbCriteria;
+        $criteria->condition = 'nominal_roll_id=:id';
+        $criteria->params = array(':id'=>$id);
+        $criteria->order = 't.order';
+        $NominalRollUserList = NominalRollDetail::model()->with('sewadars')->findAll($criteria);
+
         $ListData  = array();
 
         if (isset($_REQUEST['Sewadars'])) {
@@ -167,8 +174,14 @@ class NominalRollController extends Controller
                 $model->incharge_badge_no = $SewadarData->badge_no;
                 $model->incharge_mobile_no = $SewadarData->	mobile_primary;
             }
-            if($model->save())
+            if ($model->sewadar_id!='') {
+
+            }
+
+            if($model->save()) {
+
 				$this->redirect(array('update','id'=>$model->nominal_roll_id));
+            }
 		}
 
 		$this->render('update',array(

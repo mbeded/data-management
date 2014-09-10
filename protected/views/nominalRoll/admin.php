@@ -56,13 +56,14 @@ $('.search-form form').submit(function(){
 		*/
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
-            /*'template' => '{print}{update}{delete}',
+            'template' => '{print}{update}{delete}',
             'buttons' => array(
                'print' => array(
-                   'label' =>'<i class="icon-print"></i>',
-                   'url' => array('removeSingleData','id'=>$model->nominal_roll_id),
+                   'label' =>"<i class='icon-print'></i>",
+                   'title' =>"Print",
+                   'url'=>'Yii::app()->createUrl("nominalRoll/printSewa", array("id"=>$data->nominal_roll_id))',
                )
-            ),*/
+            ),
 		),
 	),
 )); ?>

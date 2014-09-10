@@ -57,7 +57,7 @@
 <th>Contact No.</th>
 
     <?php
-    $counter = 1;
+    $counter = 2;
     foreach($NominalRollDetail as $list) {
 
         $data = Sewadars::model()->findByPk($list->sewadar_id);
