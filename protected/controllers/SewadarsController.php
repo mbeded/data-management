@@ -63,7 +63,8 @@ class SewadarsController extends Controller
 	{
         $file_Path = Yii::getPathOfAlias('webroot.attachments.sewadars_images');
 
-		$model=new Sewadars;
+		$model = new Sewadars;
+        $technical = new SewadardTechnicalDetail();
 		$model->serial_no = basic::getLatestSewadarSerialNumber();
         $basic = new basic();
         $age = $basic->getAgeRange();
@@ -89,8 +90,16 @@ class SewadarsController extends Controller
             if($model->validate()) {
                 if($model->save())
                     if($saved) {
+                        if($_POST['Sewadars']['is_technical'] == 1) {
+                            $technical->attributes = $_POST['SewadardTechnicalDetail'];
+                            $technical->department_company = $_POST['SewadardTechnicalDetail']['department_company'];
+                            $technical->period_from = $_POST['SewadardTechnicalDetail']['period_from'];
+                            $technical->period_to = $_POST['SewadardTechnicalDetail']['period_to'];
+                            $technical->sewadar_id = $model->sewadar_id;
+                            $technical->save();
+                        }
                         Yii::app()->user->setFlash('success', 'Record Inserted Successfully.');
-                    }else {
+                    } else {
                         Yii::app()->user->setFlash('error', 'error while uploading file.');
                     }
                     $this->refresh();
@@ -99,6 +108,7 @@ class SewadarsController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
+			'technical'=>$technical,
 			'age'=>$age,
 			'area'=>$area,
 			'sections'=>$sections,

@@ -4,4 +4,4 @@ $this->breadcrumbs=array(
 	'Create',
 );
 ?>
-<?php echo $this->renderPartial('_form', array( 'bloodGroup'=>$bloodGroup,'sections'=>$sections, 'area'=>$area, 'age'=>$age, 'model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array( 'bloodGroup'=>$bloodGroup,'sections'=>$sections, 'area'=>$area, 'age'=>$age, 'technical' => $technical, 'model'=>$model)); ?>
