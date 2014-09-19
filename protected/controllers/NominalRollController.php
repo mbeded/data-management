@@ -35,7 +35,7 @@ class NominalRollController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','registerArea','addSingleData','removeSingleData','printSewa'),
+				'actions'=>array('admin','delete','registerArea','addSingleData','removeSingleData','printSewa','createList'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -162,34 +162,61 @@ class NominalRollController extends Controller
             $ListData = $sewadarModel->findAll($criteria);
         }
 
-
-        if(isset($_POST['NominalRoll']))
-		{
+        if (isset($_POST['NominalRoll'])) {
 			$model->attributes=$_POST['NominalRoll'];
             $model->sewa_not_sent_reason = $_POST['NominalRoll']['sewa_not_sent_reason'];
             $model->sewa_not_sent_reason = $_POST['NominalRoll']['sewa_not_sent_reason'];
             $model->sewadar_id  = $_POST['NominalRoll']['sewadar_id'];
+
             if ($model->sewadar_id) {
                 $SewadarData = Sewadars::model()->findByPk($model->sewadar_id);
                 $model->incharge_badge_no = $SewadarData->badge_no;
-                $model->incharge_mobile_no = $SewadarData->	mobile_primary;
+                $model->incharge_mobile_no = $SewadarData->mobile_primary;
+
+                $data = NominalRollDetail::model()->find("t.order='0' AND t.nominal_roll_id = '$model->nominal_roll_id'");
+                if ($data === null){
+
+                    NominalRollDetail::model()->updateAll(array('order' => '0'),"nominal_roll_id='$model->nominal_roll_id' AND sewadar_id='$model->sewadar_id'");
+
+                } else if ($data->sewadar_id != $model->sewadar_id) {
+                    $UserData = Sewadars::model()->findByPk($data->sewadar_id);
+                    if ($UserData->gender == 'FEMALE' ) {
+                        NominalRollDetail::model()->updateByPk($data->nominal_roll_detail_id, array('order'=>'2'));
+                    } else {
+                        NominalRollDetail::model()->updateByPk($data->nominal_roll_detail_id, array('order'=>'1'));
+                    }
+                    NominalRollDetail::model()->updateAll(
+                        array(
+                            'order'=>'0'
+                        ),
+                        'nominal_roll_id=:nominal_id AND sewadar_id=:user_id',
+                        array(
+                            ':nominal_id' => $model->nominal_roll_id,
+                            ':user_id' => $model->sewadar_id
+                        )
+                    );
+                }
             }
-            if ($model->sewadar_id!='') {
 
-            }
-
-            if($model->save()) {
-
-				$this->redirect(array('update','id'=>$model->nominal_roll_id));
+            if ($model->save()) {
+				$this->redirect(
+                    array(
+                        'update',
+                        'id' => $model->nominal_roll_id
+                    )
+                );
             }
 		}
 
-		$this->render('update',array(
-			'model'=>$model,
-			'sewadarModel'=>$sewadarModel,
-			'ListData'=>$ListData,
-			'NominalRollUserList'=>$NominalRollUserList,
-		));
+		$this->render(
+            'update',
+            array(
+                'model'=>$model,
+                'sewadarModel'=>$sewadarModel,
+                'ListData'=>$ListData,
+                'NominalRollUserList'=>$NominalRollUserList,
+		    )
+        );
 	}
 
 	/**
@@ -263,4 +290,21 @@ class NominalRollController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+
+    public function actionCreateList($term,$roll_id)
+    {
+        $query = Sewadars::model()->findAll('sewadar_name LIKE :match',array(':match' => "$term%"));
+        $list = array();
+        foreach($query as $q){
+            $data['value']= $q['sewadar_id'];
+            $data['label']= $q['sewadar_name']. " | F/D/S/W : ".$q['father_dauther_son_wife_of']. " | Address : ".$q['address1']." ".$q['address2']." ".$q['address3'];
+            $data['name']= $q['sewadar_name'];
+            $data['href'] = Yii::app()->createUrl('nominalRoll/addSingleData',array('nominal_roll_id'=>$roll_id,'user_id'=>$q['sewadar_id']));
+            $list[]= $data;
+            unset($data);
+        }
+
+        echo json_encode($list);
+    }
 }

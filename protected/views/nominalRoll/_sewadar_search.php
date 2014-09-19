@@ -8,6 +8,7 @@
         <td><?php echo $form->textFieldRow($model,'serial_no',array('class'=>'span1')); ?></td>
         <td><?php echo $form->textFieldRow($model,'badge_no',array('class'=>'span1')); ?></td>
         <td><?php echo $form->textFieldRow($model,'sewadar_name',array('class'=>'span2','maxlength'=>45)); ?></td>
+
     </tr>
     <tr>
         <td><?php $this->widget('bootstrap.widgets.TbButton', array(
