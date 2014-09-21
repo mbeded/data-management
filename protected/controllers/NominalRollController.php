@@ -17,6 +17,17 @@ class NominalRollController extends Controller
 			'accessControl', // perform access control for CRUD operations
 		);
 	}
+   /* public function filterrights()
+    {
+        return array(
+            'rights',
+        );
+    }
+
+    public function allowedActions()
+    {
+        return 'index, suggestedTags';
+    }*/
 
 	/**
 	 * Specifies the access control rules.
@@ -123,7 +134,8 @@ class NominalRollController extends Controller
 
 		if(isset($_POST['NominalRoll']))
 		{
-			$model->attributes=$_POST['NominalRoll'];
+			$model->attributes = $_POST['NominalRoll'];
+			$model->sewa_sent = $_POST['NominalRoll']['sewa_sent'];
             $model->created_on = new CDbExpression('NOW()');
             $model->sewa_not_sent_reason = $_POST['NominalRoll']['sewa_not_sent_reason'];
 			if($model->save())
@@ -164,10 +176,9 @@ class NominalRollController extends Controller
 
         if (isset($_POST['NominalRoll'])) {
 			$model->attributes=$_POST['NominalRoll'];
-            $model->sewa_not_sent_reason = $_POST['NominalRoll']['sewa_not_sent_reason'];
+            $model->sewa_sent = $_POST['NominalRoll']['sewa_sent'];
             $model->sewa_not_sent_reason = $_POST['NominalRoll']['sewa_not_sent_reason'];
             $model->sewadar_id  = $_POST['NominalRoll']['sewadar_id'];
-
             if ($model->sewadar_id) {
                 $SewadarData = Sewadars::model()->findByPk($model->sewadar_id);
                 $model->incharge_badge_no = $SewadarData->badge_no;

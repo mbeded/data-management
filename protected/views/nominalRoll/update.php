@@ -47,15 +47,17 @@ $this->breadcrumbs=array(
                     ),
                 ));
                 ?>
+                    &nbsp;&nbsp;&nbsp;
                 </td>
                 <td>
                     <?php echo $form->textFieldRow($sewadarModel,'serial_no',array('class'=>'span2 search-query','placeholder' => "Enter Serial No.")); ?>
+                    &nbsp;&nbsp;&nbsp;
                 </td>
                 <td>
                     <?php echo $form->textFieldRow($sewadarModel,'badge_no',array('class'=>'span2 search-query','placeholder' => "Enter Badget No.")); ?>
+                    &nbsp;&nbsp;
                 </td>
                 <td>
-                    &nbsp;&nbsp;
                     <?php $this->widget('bootstrap.widgets.TbButton', array(
                         'buttonType'=>'submit',
                         'type'=>'primary',

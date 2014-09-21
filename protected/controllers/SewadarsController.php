@@ -44,7 +44,20 @@ class SewadarsController extends Controller
 		);
 	}
 
-	/**
+    /*public function filterrights()
+    {
+        return array(
+            'rights',
+        );
+    }
+
+    public function allowedActions()
+    {
+        return 'index, suggestedTags';
+    }*/
+
+
+    /**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */

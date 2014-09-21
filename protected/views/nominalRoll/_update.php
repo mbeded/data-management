@@ -126,7 +126,7 @@
                         'class'=>'mt13',
                     ),
                 ));
-                echo CHtml::link('Print',array('printSewa','id'=>$model->nominal_roll_id),array('class' => 'btn btn-primary mt13')); ?>
+                echo CHtml::link('Print',array('printSewa','id'=>$model->nominal_roll_id),array('class' => 'btn btn-primary mt13', 'style' => 'margin-left:12px')); ?>
             </td>
         </tr>
     </table>
