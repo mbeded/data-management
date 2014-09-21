@@ -18,6 +18,17 @@ class SewaSectionsController extends Controller
 		);
 	}
 
+    /*public function filterrights()
+    {
+        return array(
+            'rights',
+        );
+    }
+
+    public function allowedActions()
+    {
+        return 'index, suggestedTags';
+    }*/
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.

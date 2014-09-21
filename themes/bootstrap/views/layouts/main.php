@@ -13,42 +13,57 @@
     </head>
 
     <body>
-    <?php $this->widget('bootstrap.widgets.TbNavbar',array(
-        'items'=>array(
-            array(
-                'class'=>'bootstrap.widgets.TbMenu',
-                'items'=>array(
-                    array('label'=>'Blood Group', 'url'=>array('/BloodGroup/admin'), 'items' => array(
-                        array('label' => 'Register New BloodGroup', 'url' => array('/BloodGroup/create')),
-                        array('label' => 'BloodGroup List', 'url' => array('/BloodGroup/admin')),
-                    )),
-
-                    array('label'=>'Area', 'url'=>array('/area/admin'), 'items' => array(
-                        array('label' => 'Register New Area', 'url' => array('/area/create')),
-                        array('label' => 'Area List', 'url' => array('/area/admin')),
-                    )),
-                    array('label'=>'Sections', 'url'=>array('/SewaSections/admin'), 'items' => array(
-                        array('label' => 'Register New Section', 'url' => array('/SewaSections/create')),
-                        array('label' => 'Section List', 'url' => array('/SewaSections/admin')),
-                    )),
-                    array('label'=>'Centres', 'url'=>array('/satsangCentre/admin'), 'items' => array(
-                        array('label' => 'Register New Centre', 'url' => array('/satsangCentre/create')),
-                        array('label' => 'Centre List', 'url' => array('/satsangCentre/admin'))
-                    )),
-                    array('label'=>'Sewadars', 'url'=>array('/sewadars/admin'),'items' => array(
-                        array('label'=>'Register New Sewadar', 'url'=>array('/sewadars/create')),
-                        array('label'=>'Sewadars List', 'url'=>array('/sewadars/admin')),
-                    )),
-                    array('label' => 'Nominal Roll','url'=>array('NominalRoll/index'), 'items' => array(
-                        array('label' => 'New Sewa', 'url'=> array('NominalRoll/create')),
-                        array('label' => 'Sewa List', 'url'=> array('NominalRoll/admin'))
-                    )),
-                    array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-                    array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+    <?php
+    if (Yii::app()->user->isGuest) {
+        $this->widget('bootstrap.widgets.TbNavbar',array(
+            'items'=>array(
+                array(
+                    'class'=>'bootstrap.widgets.TbMenu',
+                    'items'=>array(
+                        array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+                    ),
                 ),
             ),
-        ),
-    )); ?>
+        ));
+    } else {
+        $this->widget('bootstrap.widgets.TbNavbar',array(
+            'items'=>array(
+                array(
+                    'class'=>'bootstrap.widgets.TbMenu',
+                    'items'=>array(
+                        array('label'=>'Blood Group', 'url'=>array('/BloodGroup/admin'), 'items' => array(
+                            array('label' => 'Register New BloodGroup', 'url' => array('/BloodGroup/create')),
+                            array('label' => 'BloodGroup List', 'url' => array('/BloodGroup/admin')),
+                        )),
+
+                        array('label'=>'Area', 'url'=>array('/area/admin'), 'items' => array(
+                            array('label' => 'Register New Area', 'url' => array('/area/create')),
+                            array('label' => 'Area List', 'url' => array('/area/admin')),
+                        )),
+                        array('label'=>'Sections', 'url'=>array('/SewaSections/admin'), 'items' => array(
+                            array('label' => 'Register New Section', 'url' => array('/SewaSections/create')),
+                            array('label' => 'Section List', 'url' => array('/SewaSections/admin')),
+                        )),
+                        array('label'=>'Centres', 'url'=>array('/satsangCentre/admin'), 'items' => array(
+                            array('label' => 'Register New Centre', 'url' => array('/satsangCentre/create')),
+                            array('label' => 'Centre List', 'url' => array('/satsangCentre/admin'))
+                        )),
+                        array('label'=>'Sewadars', 'url'=>array('/sewadars/admin'),'items' => array(
+                            array('label'=>'Register New Sewadar', 'url'=>array('/sewadars/create')),
+                            array('label'=>'Sewadars List', 'url'=>array('/sewadars/admin')),
+                        )),
+                        array('label' => 'Nominal Roll','url'=>array('NominalRoll/index'), 'items' => array(
+                            array('label' => 'New Sewa', 'url'=> array('NominalRoll/create')),
+                            array('label' => 'Sewa List', 'url'=> array('NominalRoll/admin'))
+                        )),
+                        array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+                        array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+                    ),
+                ),
+            ),
+        ));
+    }
+     ?>
 
     <div class="container" id="page">
         <?php $this->widget('bootstrap.widgets.TbAlert', array(

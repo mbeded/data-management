@@ -1,10 +1,6 @@
 - nominal roll
   -- area secretary contact number
-  -- incharge name
-  -- incharge badget number
-  -- incharege mobile number
 
 
--- user registeration
-  -- date of birth insertion while registeration
-  -- new technical field insertion while registration
+final testing
+

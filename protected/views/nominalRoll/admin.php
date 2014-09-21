@@ -59,9 +59,12 @@ $('.search-form form').submit(function(){
             'template' => '{print}{update}{delete}',
             'buttons' => array(
                'print' => array(
-                   'label' =>"<i class='icon-print'></i>",
                    'title' =>"Print",
+                   'label' =>"<i class='icon-print'></i>",
                    'url'=>'Yii::app()->createUrl("nominalRoll/printSewa", array("id"=>$data->nominal_roll_id))',
+                   'options'=>array(
+                       'title' =>"Print",
+                   ),
                )
             ),
 		),

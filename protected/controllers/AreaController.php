@@ -17,6 +17,17 @@ class AreaController extends Controller
 			'accessControl', // perform access control for CRUD operations
 		);
 	}
+    /*public function filterrights()
+    {
+        return array(
+            'rights',
+        );
+    }
+
+    public function allowedActions()
+    {
+        return 'index, suggestedTags';
+    }*/
 
 	/**
 	 * Specifies the access control rules.

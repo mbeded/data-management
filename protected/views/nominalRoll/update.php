@@ -10,45 +10,8 @@ $this->breadcrumbs=array(
 </div>
 <?php echo CHtml::link('Show Detail', '#', array('class'=>'showDetail pull-right btn')); ?>
 <div class="">
-    <div class="span4">
 
-        <h2>Sewadar List</h2>
-        <?php
-        if (count($NominalRollUserList)>0) { ?>
-            <table class="table table-bordered table-condensed table-striped">
-                <thead>
-                <tr>
-                    <th>Serial No</th>
-                    <th>Name</th>
-                    <th>Contact No.</th>
-                </tr>
-                </thead>
-                <?php
-                $i= 1;
-                foreach($NominalRollUserList as $list) {
-                    $data = $list->sewadars;
-                    $datetime1 = new DateTime($data->date_of_birth);
-                    $datetime2 = new DateTime(date('Y-m-d'));
-                    $interval = $datetime1->diff($datetime2);
-                    $age =  $interval->format('%y');
-                    ?>
-                    <tr>
-                        <td><?php echo $i; ?></td>
-                        <td><?php echo $data->sewadar_name; ?></td>
-                        <td><?php echo $data->mobile_primary; ?></td>
-                        <td><?php echo CHtml::link('<i class="icon-trash"></i>',array('removeSingleData','id'=>$list->nominal_roll_detail_id),array('confirm' => 'Are you sure you want to delete `'.$data->sewadar_name.'` ,.  from sewa list')); ?></td>
-                    </tr>
-                    <?php $i++; } ?>
-            </table>
-        <?php
-        } else {
-            echo "Please Search User and Add Here";
-        }
-        ?>
-    </div>
-
-<div class="span1"></div>
-    <div class="span5">
+    <div class="span10">
         <h2>Search Sewadar</h2>
 
         <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
@@ -59,24 +22,58 @@ $this->breadcrumbs=array(
         ?>
         <table>
             <tr>
-                <td><?php echo $form->textFieldRow($sewadarModel,'serial_no',array('class'=>'span1')); ?></td>
-                <td><?php echo $form->textFieldRow($sewadarModel,'badge_no',array('class'=>'span1')); ?></td>
-                <td><?php echo $form->textFieldRow($sewadarModel,'sewadar_name',array('class'=>'span2','maxlength'=>45)); ?></td>
+                <td>
+                <label class="required" for="Sewadars_serial_no">Sewadar Name</label>
+                    <?php
+                $urlAfm = Yii::app()->createUrl('nominalRoll/Createlist',array('roll_id'=>$model->nominal_roll_id));
+                $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
+                    'name'=>'searchbox',
+                    'value'=>'',
+                    'source'=>$urlAfm,
+                    'options'=>array(
+                        'showAnim'=>'fold',
+                        'minLength'=>'2',
+                        'select'=>'js:function( event, ui ) {
+                        $("#searchbox").val( ui.item.name );
+                        $("#selectedvalue").val( ui.item.value );
+                        return false;
+                  }',
+                    ),
+                    'htmlOptions'=>array(
+                        'onfocus' => 'js: this.value = null; $("#searchbox").val(null); $("#selectedvalue").val(null);',
+                        'class' => 'span4 search-query',
+                        'placeholder' => "Search By Name...",
+
+                    ),
+                ));
+                ?>
+                    &nbsp;&nbsp;&nbsp;
+                </td>
+                <td>
+                    <?php echo $form->textFieldRow($sewadarModel,'serial_no',array('class'=>'span2 search-query','placeholder' => "Enter Serial No.")); ?>
+                    &nbsp;&nbsp;&nbsp;
+                </td>
+                <td>
+                    <?php echo $form->textFieldRow($sewadarModel,'badge_no',array('class'=>'span2 search-query','placeholder' => "Enter Badget No.")); ?>
+                    &nbsp;&nbsp;
+                </td>
                 <td>
                     <?php $this->widget('bootstrap.widgets.TbButton', array(
                         'buttonType'=>'submit',
                         'type'=>'primary',
                         'label'=>'Search',
-                            'htmlOptions' =>array('style'=>'margin-top:12px;')
+                            'htmlOptions' =>array('style'=>'margin-top:26px;','class'=>'search-query')
                     )
 
                     ); ?>
-                <?php echo CHtml::link('Reset',array('nominalRoll/update','id'=>$model->nominal_roll_id),array('class'=>'btn','style'=>'margin-top:12px;')); ?>
+                </td>
+                <td>
+
+                    &nbsp;&nbsp;<?php echo CHtml::link('Reset',array('nominalRoll/update','id'=>$model->nominal_roll_id),array('class'=>'btn','style'=>'margin-top:26px;')); ?>
                 </td>
             </tr>
         </table>
-
-        <?php $this->endWidget();?>
+                <?php $this->endWidget();?>
 
 
 
@@ -111,6 +108,51 @@ $this->breadcrumbs=array(
        }
         ?>
     </div>
+
+    <div class="span10">
+
+        <h2>Sewadar List</h2>
+        <?php
+        if (count($NominalRollUserList)>0) { ?>
+            <table class="table table-bordered table-condensed table-striped">
+                <thead>
+                <tr>
+                    <th>Serial No</th>
+                    <th>Name</th>
+                    <th>Fahter/Daughter/Son/Wife of</th>
+                    <th>Address</th>
+                    <th>Contact No.</th>
+                </tr>
+                </thead>
+                <?php
+                $i= 1;
+                foreach($NominalRollUserList as $list) {
+                    $data = $list->sewadars;
+                    $age = '';
+                    if (isset($data->date_of_birth)) {
+                        $datetime1 = new DateTime($data->date_of_birth);
+                        $datetime2 = new DateTime(date('Y-m-d'));
+                        $interval = $datetime1->diff($datetime2);
+                        $age = $interval->format('%y');
+                    }
+
+                    ?>
+                    <tr>
+                        <td><?php echo $i; ?></td>
+                        <td><?php echo $data->sewadar_name; ?></td>
+                        <td><?php echo $data->father_dauther_son_wife_of; ?></td>
+                        <td><?php echo $data->address1." ".$data->address2." ".$data->address3; ?></td>
+                        <td><?php echo $data->mobile_primary; ?></td>
+                        <td><?php echo CHtml::link('<i class="icon-trash"></i>',array('removeSingleData','id'=>$list->nominal_roll_detail_id),array('confirm' => 'Are you sure you want to delete `'.$data->sewadar_name.'` ,.  from sewa list')); ?></td>
+                    </tr>
+                    <?php $i++; } ?>
+            </table>
+        <?php
+        } else {
+            echo "Please Search User and Add Here";
+        }
+        ?>
+    </div>
     <div class="clearfix"></div>
 
 </div>
@@ -122,3 +164,14 @@ $this->breadcrumbs=array(
         })
     });
 </script>
+<?php
+Yii::app()->clientScript->registerScript('autocomplete', "
+    $('#searchbox').data('autocomplete')._renderItem = function( ul, item ) {
+        return $('<li></li>')
+        .data('item.autocomplete', item)
+        .append('<a href=' + item.href + '>' + item.label + '</a>')
+        .appendTo(ul);
+    };",
+    CClientScript::POS_READY
+);
+?>
